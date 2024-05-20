@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+            xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:viewModel="clr-namespace:SfDataGridSample.ViewModel"
+             x:Class="SfDataGridSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewModel:MainViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Button Text="Export to Excel" Clicked="ExportToExcel_Clicked"/>
+        <tabView:SfTabView x:Name="tabView">
+        <tabView:SfTabView.Items>
+            <tabView:SfTabItem Header="Employees">
+                <tabView:SfTabItem.Content>
+                    <syncfusion:SfDataGrid x:Name="employeeDataGrid"
+                                           ColumnWidthMode="Auto"
+                                           GridLinesVisibility="Both"
+                                           HeaderGridLinesVisibility="Both"
+                                           x:DataType="viewModel:MainViewModel"
+                                           ItemsSource="{Binding Employees}">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:DataGridNumericColumn MappingName="EmployeeID" HeaderText="Employee ID" Format="D"/>
+                            <syncfusion:DataGridTextColumn MappingName="Name" HeaderText="Name" />
+                            <syncfusion:DataGridTextColumn MappingName="IDNumber" HeaderText="ID Number" />
+                            <syncfusion:DataGridTextColumn MappingName="Title" HeaderText="Title" />
+                            <syncfusion:DataGridNumericColumn MappingName="ContactID" HeaderText="Contact ID" />
+                            <syncfusion:DataGridDateColumn MappingName="BirthDate" HeaderText="Birth Date" />
+                            <syncfusion:DataGridCheckBoxColumn MappingName="MaritalStatus" HeaderText="Marital Status" />
+                            <syncfusion:DataGridTextColumn MappingName="Gender" HeaderText="Gender" />
+                            <syncfusion:DataGridDateColumn MappingName="HireDate" HeaderText="Hire Date" />
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Header="Orders">
+                <tabView:SfTabItem.Content>
+                    <syncfusion:SfDataGrid x:Name="ordersDataGrid"
+                                           ColumnWidthMode="Auto"
+                                           GridLinesVisibility="Both"
+                                           HeaderGridLinesVisibility="Both"
+                                           x:DataType="viewModel:MainViewModel"     
+                                           ItemsSource="{Binding OrderInfoCollection}">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:DataGridTextColumn MappingName="OrderID" HeaderText="Order ID"/>
+                            <syncfusion:DataGridTextColumn MappingName="CustomerID" HeaderText="Customer ID"/>
+                            <syncfusion:DataGridTextColumn MappingName="Customer" HeaderText="Customer"/>
+                            <syncfusion:DataGridTextColumn MappingName="ShipCity" HeaderText="Ship City"/>
+                            <syncfusion:DataGridTextColumn MappingName="ShipCountry" HeaderText="Ship Country"/>
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Header="New Employees">
+                <tabView:SfTabItem.Content>
+                    <syncfusion:SfDataGrid x:Name="newEmployeeDataGrid"
+                                           GridLinesVisibility="Both"
+                                           HeaderGridLinesVisibility="Both"
+                                           ColumnWidthMode="Auto"
+                                           x:DataType="viewModel:MainViewModel"
+                                           ItemsSource="{Binding EmployeeCollection}">  
+                    </syncfusion:SfDataGrid>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+        </tabView:SfTabView.Items>
+    </tabView:SfTabView>
+    </StackLayout>
+    
+
+    
+
+</ContentPage>
